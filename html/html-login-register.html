@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css-login-register.css">
+    <script src="/js-login-register.js"></script>
+</head>
+<body>
+    <div class="back"></div>
+    <section><div class="card-content">
+    <div class="register-title">
+        <h2>Register</h2>    
+    <div class="line"></div></div>
+    <form action="/LoginRegister" method="POST">
+    <label class="first-name">First Name</br>
+        <input type="text" id="first-name-val" class="input-box" name="first_name" required></br>
+        <div class="border"></div></br>
+        <label class="last-name">Last Name </br>
+            <input type="text" id="last-name-val" class="input-box" name="last_name" required></br>
+            <div class="border"></div></br>
+            <label class="email-id">Enter Email Id</br>
+                <input type="email" id="email-id-val" class="input-box" name="email_id" required></br>
+                <div class="border"></div></br>
+                <label class="create-pass">Create Password</br>
+                    <input type="password" id="create-pass-val" class="input-box" name="create_password" required></br>
+                    <div class="border"></div></br>
+                    <label class="reenter-pass">Re-Enter Password</br>
+                        <input type="password" id="reenter-pass-val" class="input-box" name="re_password" required></br>
+                        <div class="border"></div></br>
+                        <button class="submit" onclick="alertmsg()" type="submit" >Submit</button>
+                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+</body>
+</html>
+
+   

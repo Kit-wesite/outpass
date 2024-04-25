@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css-staff-verify.css">
+</head>
+<body>
+    <div class="back"></div>
+    <section>
+        <div class="card-content">
+            <div class="register-title">
+                <h2>Requests For Outpass</h2>
+                <div class="line"></div>
+            </div>
+            <% student.forEach(function(student) { %>
+            <div class="info-card" id="card_<%= student.register_number %>">
+                <div class="content">
+                    <p>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<%= student.student_name %></p>
+                    <p>Register Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<%= student.register_number %></p>
+                    <p>Department;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<%= student.department %></p>
+                    <p>Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<%= student.year %></p>
+                    <p>Purpose Of Outpass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;<%= student.purpose_of_outpass %></p>
+                    <p>Parent contact Number&nbsp;&nbsp;:&nbsp;<%= student.parent_conduct_number %></p>
+                    <p>From Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<%= student.from_date %></p>
+                    <p>To Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<%= student.to_date %></p>
+                    <div class="buttons">
+                        <button class="reject-button" onclick="rejectRequest('<%= JSON.stringify(student) %>')">Reject</button>
+                        <button class="accept-button" onclick="acceptRequest('<%= JSON.stringify(student) %>')">Provide</button>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </section>
+
+    <script>
+        function rejectRequest(studentData) {
+            var student = JSON.parse(studentData);
+            var cardId = 'card_' + student.register_number;
+            var cardToRemove = document.getElementById(cardId);
+            
+            if (cardToRemove) {
+                cardToRemove.remove(); // Remove the card element from the DOM
+                alert('Request rejected');
+            } else {
+                alert('Card not found');
+            }
+        }
+
+        function acceptRequest(studentData) {
+            var student = JSON.parse(studentData);
+            var cardId = 'card_' + student.register_number;
+            var cardToRemove = document.getElementById(cardId);
+            
+            if (cardToRemove) {
+                cardToRemove.remove(); // Remove the card element from the DOM
+                localStorage.setItem('acceptedStudent', JSON.stringify(student));
+                alert('Sent to Security');
+            } else {
+                alert('Card not found');
+            }
+        }
+    </script>
+    
+</body>
+</html>
